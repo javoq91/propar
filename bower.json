@@ -1,0 +1,21 @@
+{
+  "name": "Emilio_Bravo/test",
+  "version": "0.9.0",
+  "dependencies": {
+    "bootstrap": "~3.*",
+    "font-awesome": "~4.*",
+    "jquery": "~2.1.1",
+    "nivo-slider": "*",
+    "holderjs": "~2.4.0",
+    "jquery-selectBox": "~1.2.0",
+    "carouFredSel": "~6.2.1",
+    "seiyria-bootstrap-slider": "~4.4.0",
+    "accountingjs": "~0.3.2",
+    "swiper": "~3.0.6",
+    "Leaflet.fullscreen": "Leaflet/Leaflet.fullscreen#~0.0.4",
+    "jquery-mask-plugin": "jQuery-Mask-Plugin#^1.14.11"
+  },
+  "resolutions": {
+    "jquery": "~2.1.1"
+  }
+}

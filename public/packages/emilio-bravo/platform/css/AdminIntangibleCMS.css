@@ -1,0 +1,41 @@
+.nofloat{
+	float:none;
+}
+
+/* Products */
+
+.edit-on-hover{
+	border: 1px #FFFFFF solid;
+	background-color: #FFFFFF;
+}
+
+.edit-on-hover:hover{
+	border: 1px #CCCCCC solid;
+	background-color: #ffffea;
+	cursor: pointer;
+}
+
+.edit-on-hover:focus{
+	border: 1px #00FF00 solid;
+	background-color: #ffffea;
+	cursor: text;
+}
+
+#variants_options_section{
+	display:none;
+}
+
+#variants_list{
+	display: block;
+}
+
+@media print{
+	a[href]:after {
+		content: "";
+	}
+}
+
+.skin-black .sidebar > .sidebar-menu > li.active > ul > li.active a{
+  color: #f6f6f6;
+  background: #000000;
+}

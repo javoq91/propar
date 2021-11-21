@@ -1,0 +1,104 @@
+{
+	"name": "emilio-bravo/propar-com-py",
+	"description": "Web site for PROPAR Inmobiliaria.",
+	"keywords": ["propar", "inmobiliaria", "real estate"],
+	"type": "project",
+	"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/bellbird1/propar_group/blog",
+   					"no-api": true
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/bellbird1/propar_group/contacts",
+   					"no-api": true
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/bellbird1/propar_group/ecommerce",
+   					"no-api": true
+        },
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/geoplaces",
+			"no-api": true
+		},
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/omnipay-bancard",
+			"no-api": true
+		},
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/pages",
+			"no-api": true
+		},
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/platform",
+			"no-api": true
+		},
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/properties",
+			"no-api": true
+		},
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/sauna",
+			"no-api": true
+		},
+		{
+			"type": "vcs",
+			"url": "https://gitlab.com/bellbird1/propar_group/sliders",
+			"no-api": true
+		}
+	],
+	"require": {
+		"laravel/framework": "4.2.*",
+		"emilio-bravo/platform": "0.4.*",
+		"emilio-bravo/pages": "0.2.*",
+		"emilio-bravo/contacts": "0.2.*",
+		"emilio-bravo/sauna": "0.1.*",
+		"emilio-bravo/sliders": "0.2.*",
+		"emilio-bravo/blog": "0.2.*",
+		"emilio-bravo/properties": "0.1.*",
+		"emilio-bravo/CBI-Lotes": "dev-develop",
+		"orangehill/iseed": "~1.1",
+		"barryvdh/laravel-debugbar": "~1.8@dev",
+		"emilio-bravo/ecommerce": "dev-master",
+		"emilio-bravo/omnipay-bancard": "dev-develop",
+		"greggilbert/recaptcha": "1.*"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/events",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php",
+			"app/composers"
+		]
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable" : true
+}

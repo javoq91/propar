@@ -1,0 +1,81 @@
+version: "3"
+services:
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=production
+      - local_root=/web/current/app/storage/backup
+      - dropbox_token=ceehOGvYBRMAAAAAAAAQwp7OzhQ62jTQ9UWtHbZiYsrG1g85T0mXAGDmmHdvNgPC
+      - dropbox_key=y8wucaas8pwy081
+      - dropbox_secret=ifmn03usntjppd5
+      - mail_driver=smtp
+      - mail_host=host196.hostmonster.com
+      - mail_port=465
+      - mail_from_address=noresponder@propar.com.py
+      - mail_from_name='Inmobiliaria Propar'
+      - mail_encryption=ssl
+      - mail_username=noresponder@propar.com.py
+      - mail_password=aQiMa44pPH
+      - mysql_host=db
+      - mysql_database=c1propar
+      - mysql_username=c1propar
+      - mysql_password=1RsTD@GpShf9j
+      - bancard_test_mode=false
+      - bancard_public_key=zqgPuWNFsKsSb1tp0gSfWkQMvx621Z2z
+      - bancard_private_key=bFURGbEOEMyon9bf+Qoz8VO1iMcAK.H.566rRw1b
+      - shipping_default_delivery_time=24
+      - cbi_api_uri=https://sistema.propar.com.py/api/
+      - cbi_api_username=prueba_api
+      - cbi_api_password=pruebaapi2017
+    working_dir: /var/www
+    volumes:
+      - app:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+  #Nginx Service
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - app:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+      - ./log:/var/log/propar:rw
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  #MySQL Service
+  db:
+    image: mysql:5
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=c1propar
+      - MYSQL_ROOT_PASSWORD=1RsTD@GpShf9j
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+
+#Volumes
+volumes:
+  dbdata:
+  app:
